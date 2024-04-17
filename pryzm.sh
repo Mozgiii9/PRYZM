@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source <(curl -s https://raw.githubusercontent.com/itrocket-team/testnet_guides/main/utils/common.sh)
+
 echo -e '\e[40m\e[92m'
 echo -e '███╗   ██╗ ██████╗ ██████╗ ███████╗██████╗ ██╗   ██╗███╗   ██╗███╗   ██╗███████╗██████╗'
 echo -e '████╗  ██║██╔═══██╗██╔══██╗██╔════╝██╔══██╗██║   ██║████╗  ██║████╗  ██║██╔════╝██╔══██╗'
@@ -8,8 +10,6 @@ echo -e '██║╚██╗██║██║   ██║██║  ██║
 echo -e '██║ ╚████║╚██████╔╝██████╔╝███████╗██║  ██║╚██████╔╝██║ ╚████║██║ ╚████║███████╗██║  ██║'
 echo -e '╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝'
 echo -e '\e[0m'
-
-sleep 2
 
 read -p "Enter WALLET name:" WALLET
 echo 'export WALLET='$WALLET
