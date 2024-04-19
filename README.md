@@ -1,6 +1,6 @@
 ![image](https://github.com/Mozgiii9/PryzmSetupTheNode/assets/74683169/1fbfcd0e-ec3e-439a-9c40-740cc8524975)
 
-## Обзор проекта Pryzm + инструкция по установке ноды
+# Pryzm
 
 ## Дата создания гайда: 19.04.2024.
 
@@ -23,6 +23,13 @@
 - Официальный гайд по установке ноды : [перейти](https://docs.pryzm.zone/overview/maintain-guides/run-node/running-pryzmd/)
 - Ссылка на кран : [перейти](https://testnet.pryzm.zone/faucet)
 - Ссылка на эксплорер : [перейти](https://testnet.chainsco.pe/pryzm/validators)
+
+**Требования к серверу:**
+
+- *CPU : 4 CORES 2.5 GHz;*
+- *RAM : 8 GB;*
+- *Storage : 500 GB SSD NVME;*
+- *OS : Ubuntu 20.04 / Ubuntu 22.04* 
 
 ### Инструкция по установке ноды:
 
@@ -76,7 +83,7 @@ pryzmd status 2>&1 | jq .SyncInfo
 pryzmd keys add $WALLET
 ```
 
-**Создаем passpharse(пароль Вашего кошелька). Вводим его два раза, псоле чего сохраняем адрес кошелька, а также seed-фразу(mnemonic phrase).**
+**Создаем passpharse(пароль Вашего кошелька). Вводим его два раза, после чего сохраняем адрес кошелька, а также seed-фразу(mnemonic phrase) в надежное место.**
 
 **8. Далее исполняем такую команду. "$WALLET" замените на имя Вашего кошелька:**
 ```
@@ -97,7 +104,7 @@ pryzmd status 2>&1 | jq .SyncInfo
 
 **11. Переходим в [кран](https://testnet.pryzm.zone/faucet), запрашиваем токены.**
 
-**12. После получения токенов мы можем делегировать их самому себе. Для этого введем такую команду:**
+**12. После получения создадим валидатора. Для этого введем такую команду:**
 
 ```
 pryzmd tx staking create-validator \
@@ -121,6 +128,10 @@ pryzmd tx staking create-validator \
 *- "moniker" : Укажите в кавычках имя вашей ноды, которое Вы указывали в момент запуска Bash-скрипта;*
 
 *- "details" : Укажите любое описание. Можно оставить как в примере.*
+
+**13. Вводим пароль от кошелька, транзакция должна успешно выполниться. Копируем хэш транзакции, который вернул сервер и переходим в [эксплорер](https://testnet.chainsco.pe/pryzm/validators)**
+
+**ВАЖНО: Ваш валидатор будет иметь статус "inactive". Для того, чтобы Ваш валидатор поменял статус на "active" Вам необходимо начать делегировать токены другим валидаторам, а также сделать так, чтобы Вам тоже делегировали токены. Для этого можно перейти в Discord проекта и попросить делегировать токены на адрес Вашего валидатора. Узнать адрес валидатора можно в эксплорере.**
 
 **Шпаргалка по командам:**
 
@@ -194,3 +205,22 @@ old_bin_path=$(which pryzmd) && \
 home_path=$HOME && \
 rpc_port=$(grep -m 1 -oP '^laddr = "\K[^"]+' "$HOME/.pryzm/config/config.toml" | cut -d ':' -f 3) && \
 tmux new -s pryzm-upgrade "sudo bash -c 'curl -s https://raw.githubusercontent.com/itrocket-team/testnet_guides/main/utils/autoupgrade/upgrade.sh | bash -s -- -u \"1865300\" -b pryzmd -n \"$HOME/pryzmd\" -o \"$old_bin_path\" -h \"$home_path\" -p \"https://pryzm-testnet-api.itrocket.net/cosmos/gov/v1/proposals/449\" -r \"$rpc_port\"'"
+```
+
+**12. Делегировать токены самому себе:**
+
+```
+pryzmd tx staking delegate $(pryzmd keys show $WALLET --bech val -a) 1000000upryzm --from $WALLET --chain-id indigo-1 --fees 3000upryzm -y
+```
+
+**13. Делегировать токены другому валидатору. Замените <TO_VALOPER_ADDRESS> на адрес валидатора, которому хотите длегировать токены:**
+
+```
+pryzmd tx staking delegate <TO_VALOPER_ADDRESS> 1000000upryzm --from $WALLET --chain-id indigo-1 --fees 3000upryzm -y
+```
+
+### Обязательно проведите собственный ресерч проектов перед тем как ставить ноду. Сообщество NodeRunner не несет ответственность за Ваши действия и средства. Помните, проводя свой ресёрч, Вы учитесь и развиваетесь.
+
+### Связь со мной: [Telegram(@M0zgiii)](https://t.me/m0zgiii)
+
+### Мои соц. сети: [Twitter](https://twitter.com/m0zgiii) 
