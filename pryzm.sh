@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source <(curl -s https://raw.githubusercontent.com/itrocket-team/testnet_guides/main/utils/common.sh)
-
 echo -e '\e[40m\e[92m'
 echo -e '███╗   ██╗ ██████╗ ██████╗ ███████╗██████╗ ██╗   ██╗███╗   ██╗███╗   ██╗███████╗██████╗'
 echo -e '████╗  ██║██╔═══██╗██╔══██╗██╔════╝██╔══██╗██║   ██║████╗  ██║████╗  ██║██╔════╝██╔══██╗'
@@ -11,11 +9,13 @@ echo -e '██║ ╚████║╚██████╔╝█████�
 echo -e '╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝'
 echo -e '\e[0m'
 
-read -p "Enter WALLET name:" WALLET
+sleep 2
+
+read -p "Enter WALLET name: " WALLET
 echo 'export WALLET='$WALLET
-read -p "Enter your MONIKER :" MONIKER
+read -p "Enter your MONIKER: " MONIKER
 echo 'export MONIKER='$MONIKER
-read -p "Enter your PORT (for example 17, default port=26):" PORT
+read -p "Enter your PORT (for example 17, default port=26): " PORT
 echo 'export PORT='$PORT
 
 # set vars
@@ -26,10 +26,10 @@ echo "export PRYZM_PORT="$PORT"" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 printLine
-echo -e "Moniker:        \e[1m\e[32m$MONIKER\e[0m"
-echo -e "Wallet:         \e[1m\e[32m$WALLET\e[0m"
-echo -e "Chain id:       \e[1m\e[32m$PRYZM_CHAIN_ID\e[0m"
-echo -e "Node custom port:  \e[1m\e[32m$PRYZM_PORT\e[0m"
+echo -e "Moniker :        \e[1m\e[32m$MONIKER\e[0m"
+echo -e "Wallet :         \e[1m\e[32m$WALLET\e[0m"
+echo -e "Chain id :       \e[1m\e[32m$PRYZM_CHAIN_ID\e[0m"
+echo -e "Node custom port :  \e[1m\e[32m$PRYZM_PORT\e[0m"
 printLine
 sleep 1
 
