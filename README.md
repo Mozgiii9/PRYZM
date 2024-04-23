@@ -28,7 +28,7 @@
 
 - *CPU : 4 CORES 2.5 GHz;*
 - *RAM : 8 GB;*
-- *Storage : 500 GB SSD NVME;*
+- *Storage : 500 GB SSD;*
 - *OS : Ubuntu 20.04 / Ubuntu 22.04* 
 
 ### Инструкция по установке ноды:
